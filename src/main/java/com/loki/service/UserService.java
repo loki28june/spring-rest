@@ -1,4 +1,4 @@
-package hello;
+package com.loki.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.loki.entity.User;
+import com.loki.repository.UserRepository;
 
 @Service
 public class UserService {

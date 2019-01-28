@@ -1,4 +1,4 @@
-package hello;
+package com.loki.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.loki.pojo.EmployeeListVO;
+import com.loki.pojo.EmployeeVO;
+import com.loki.pojo.Greeting;
 
 @RestController
 @RequestMapping("/greet")

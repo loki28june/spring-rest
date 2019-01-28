@@ -1,4 +1,4 @@
-package com.loki.consume;
+package com.loki.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

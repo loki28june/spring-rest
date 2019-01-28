@@ -1,4 +1,4 @@
-package hello;
+package com.loki.pojo;
 
 public class Greeting {
 	private Long id;
