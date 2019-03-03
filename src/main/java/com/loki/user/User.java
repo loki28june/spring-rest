@@ -1,4 +1,4 @@
-package com.loki.entity;
+package com.loki.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,9 +20,8 @@ public class User {
 
 	}
 
-	public User(Long id, String name, String email) {
+	public User(String name, String email) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.email = email;
 	}

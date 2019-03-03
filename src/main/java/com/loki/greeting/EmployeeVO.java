@@ -1,4 +1,4 @@
-package com.loki.pojo;
+package com.loki.greeting;
 
 import java.io.Serializable;
 

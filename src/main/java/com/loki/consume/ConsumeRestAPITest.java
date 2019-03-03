@@ -1,14 +1,12 @@
-package com.loki.controller;
+package com.loki.consume;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-import com.loki.pojo.Quote;
+public class ConsumeRestAPITest {
 
-public class ConsumeRestApplication {
-
-	private static final Logger log = LoggerFactory.getLogger(ConsumeRestApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(ConsumeRestAPITest.class);
 
 	public static void main(String[] args) {
 		RestTemplate restTemplate = new RestTemplate();

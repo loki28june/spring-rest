@@ -1,4 +1,4 @@
-package com.loki.controller;
+package com.loki.greeting;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.loki.pojo.EmployeeListVO;
-import com.loki.pojo.EmployeeVO;
-import com.loki.pojo.Greeting;
 
 @RestController
 @RequestMapping("/greet")
@@ -42,8 +38,8 @@ public class GreetingController {
 	}
 
 	@RequestMapping(value = "/employees/{id}")
-	public ResponseEntity<EmployeeVO> getEmployeeById(@PathVariable("id") int id) {
-		if (id <= 3) {
+	public ResponseEntity<EmployeeVO> getEmployeeById(@PathVariable("id") int employeeID) {
+		if (employeeID <= 3) {
 			EmployeeVO employee = new EmployeeVO(1, "Lokesh", "Gupta", "howtodoinjava@gmail.com");
 			return new ResponseEntity<EmployeeVO>(employee, HttpStatus.OK);
 		}
