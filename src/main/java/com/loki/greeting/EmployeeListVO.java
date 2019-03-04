@@ -6,18 +6,20 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
  
-@XmlRootElement (name="employees")
+@XmlRootElement (name="Employees")
 public class EmployeeListVO implements Serializable
 {
     private static final long serialVersionUID = 1L;
      
-    private List<EmployeeVO> employees = new ArrayList<EmployeeVO>();
+    private List<EmployeeVO> employee = new ArrayList<EmployeeVO>();
+
+	public List<EmployeeVO> getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(List<EmployeeVO> employee) {
+		this.employee = employee;
+	}
  
-    public List<EmployeeVO> getEmployees() {
-        return employees;
-    }
- 
-    public void setEmployees(List<EmployeeVO> employees) {
-        this.employees = employees;
-    }
+   
 }

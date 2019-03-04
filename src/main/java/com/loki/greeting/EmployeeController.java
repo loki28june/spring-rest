@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/greet")
-public class GreetingController {
+public class EmployeeController {
 	private final AtomicLong id = new AtomicLong();
 	private String template = "Hello %s %s";
 
@@ -22,19 +22,19 @@ public class GreetingController {
 		return new Greeting(id.incrementAndGet(), String.format(template, name, lastName));
 	}
 
-	@RequestMapping(value = "/employees")
+	@RequestMapping(value = "/employees", produces="application/xml")
 	public EmployeeListVO getAllEmployees() {
-		EmployeeListVO employees = new EmployeeListVO();
+		EmployeeListVO employee = new EmployeeListVO();
 
 		EmployeeVO empOne = new EmployeeVO(1, "Lokesh", "Gupta", "howtodoinjava@gmail.com");
 		EmployeeVO empTwo = new EmployeeVO(2, "Amit", "Singhal", "asinghal@yahoo.com");
 		EmployeeVO empThree = new EmployeeVO(3, "Kirti", "Mishra", "kmishra@gmail.com");
 
-		employees.getEmployees().add(empOne);
-		employees.getEmployees().add(empTwo);
-		employees.getEmployees().add(empThree);
+		employee.getEmployee().add(empOne);
+		employee.getEmployee().add(empTwo);
+		employee.getEmployee().add(empThree);
 
-		return employees;
+		return employee;
 	}
 
 	@RequestMapping(value = "/employees/{id}")
