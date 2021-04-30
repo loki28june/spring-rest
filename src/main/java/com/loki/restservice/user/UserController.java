@@ -25,8 +25,8 @@ public class UserController {
 
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<User> findById(@PathVariable("id") Long id){
-		return (List<User>) userService.findById(id);
+	public User findById(@PathVariable("id") Long id){
+		return userService.findById(id);
 	}
 
 	@PostMapping
