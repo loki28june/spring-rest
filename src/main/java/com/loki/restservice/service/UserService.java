@@ -1,26 +1,22 @@
-package com.loki.restservice.user;
+package com.loki.restservice.service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
+import com.loki.restservice.entity.User;
+import com.loki.restservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    public static final String SYSTEM = "SYSTEM";
     private UserRepository userRepository;
 
     @Autowired
     public UserService(UserRepository userRepo) {
         this.userRepository = userRepo;
     }
-
-    private List<User> users = Arrays.asList(
-            new User("Lokesh", "lnmanit@gmail.com"),
-            new User("Neeti", "neeti@gmail.com"),
-            new User("Nimmi", "nimmi@gmail.com"),
-            new User("Kimmi", "kimmi@gmail.com"));
 
     public Iterable<User> findAll() {
         return userRepository.findAll();
@@ -31,6 +27,10 @@ public class UserService {
     }
 
     public void create(User user) {
+        user.setCreatedBy(SYSTEM);
+        user.setModifiedBy(SYSTEM);
+        user.setCreatedDate(LocalDateTime.now());
+        user.setModifiedDate(LocalDateTime.now());
         userRepository.save(user);
     }
 
@@ -38,8 +38,11 @@ public class UserService {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
             user.setEmail(updatedUser.getEmail());
-            user.setName(updatedUser.getName());
+            user.setModifiedBy(SYSTEM);
+            user.setModifiedDate(LocalDateTime.now());
             userRepository.save(user);
             return;
         }
