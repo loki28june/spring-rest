@@ -2,12 +2,13 @@ package com.loki.restservice.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class User {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column(name = "firstName")
     private String firstName;
@@ -17,6 +18,9 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts;
 
     @Column(name = "createdDate", nullable = false, updatable = false)
     private LocalDateTime createdDate;
@@ -29,6 +33,22 @@ public class User {
 
     @Column(name = "modifiedBy")
     private String modifiedBy;
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;

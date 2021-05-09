@@ -1,5 +1,5 @@
 CREATE TABLE `user` (
-	`id` BIGINT(19) NOT NULL,
+	`id` INT(19) NOT NULL,
 	`first_name` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`last_name` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`email` VARCHAR(255) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',

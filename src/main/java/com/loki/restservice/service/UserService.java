@@ -3,27 +3,38 @@ package com.loki.restservice.service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import com.loki.restservice.entity.Post;
 import com.loki.restservice.entity.User;
+import com.loki.restservice.exception.UserNotFoundException;
+import com.loki.restservice.repository.PostRepository;
 import com.loki.restservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 public class UserService {
     public static final String SYSTEM = "SYSTEM";
     private UserRepository userRepository;
+    private PostRepository postRepository;
 
     @Autowired
-    public UserService(UserRepository userRepo) {
+    public UserService(UserRepository userRepo, PostRepository postRepository) {
         this.userRepository = userRepo;
+        this.postRepository = postRepository;
     }
 
     public Iterable<User> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    public User findById(Integer id) {
+        Optional<User> userOptional= userRepository.findById(id);
+        if(!userOptional.isPresent()){
+            throw new UserNotFoundException("User not found exception");
+        }
+        return userOptional.get();
     }
 
     public void create(User user) {
@@ -34,7 +45,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void update(Long id, User updatedUser) {
+    public void update(Integer id, User updatedUser) {
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
@@ -49,7 +60,13 @@ public class UserService {
         throw new RuntimeException("User entity update failed");
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Integer id) {
         userRepository.deleteById(id);
+    }
+
+    public void createPost(Post post) {
+        post.setCreatedDate(LocalDateTime.now());
+        post.setModifiedDate(LocalDateTime.now());
+        postRepository.save(post);
     }
 }
